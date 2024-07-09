@@ -1,0 +1,28 @@
+.OpenAIPlugin_OpenAIInputBox {
+  display: block;
+  position: absolute;
+  width: 350px;
+  min-height: 80px;
+  /* background-color: #fff; */
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  z-index: 24;
+  animation: show-input-box 0.4s ease;
+}
+
+.OpenAIPlugin_OpenAIInputBox::before {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 0;
+  margin-left: 0.5em;
+  right: -1em;
+  top: 0;
+  left: calc(50% + 0.25em);
+  box-sizing: border-box;
+  border: 0.5em solid black;
+  border-color: transparent transparent #101827 #101827;
+  transform-origin: 0 0;
+  transform: rotate(135deg);
+  box-shadow: -3px 3px 3px 0 rgba(0, 0, 0, 0.05);
+}
