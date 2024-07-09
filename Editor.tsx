@@ -73,6 +73,8 @@ import YouTubePlugin from './plugins/YouTubePlugin';
 import ContentEditable from './ui/ContentEditable';
 import Placeholder from './ui/Placeholder';
 import { OpenAIPlugin } from './plugins/OpenAIPlugin';
+import { OnChangePlugin } from '@lexical/react/LexicalOnChangePlugin';
+import { EditorState } from 'lexical';
 
 const skipCollaborationInit =
   // @ts-expect-error
@@ -132,6 +134,10 @@ export default function Editor(): JSX.Element {
     };
   }, [isSmallWidthViewport]);
 
+  const debouncedUpdates = async (editorState: EditorState) => {
+    console.log('editorState', editorState.toJSON());
+  }
+
   return (
     <>
       {isRichText && <ToolbarPlugin setIsLinkEditMode={setIsLinkEditMode} />}
@@ -146,6 +152,9 @@ export default function Editor(): JSX.Element {
         <ComponentPickerPlugin />
         <EmojiPickerPlugin />
         <AutoEmbedPlugin />
+
+        <OnChangePlugin ignoreHistoryMergeTagChange={true} ignoreSelectionChange={true} onChange={debouncedUpdates} />
+
 
         <MentionsPlugin />
         <EmojisPlugin />
